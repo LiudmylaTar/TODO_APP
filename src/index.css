@@ -1,0 +1,77 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Geologica", sans-serif;
+  background-color: white;
+  color: #1a1a1a;
+}
+
+body {
+  min-width: 320px;
+  height: 100%;
+  margin: 0 auto;
+  background: white;
+}
+
+main {
+  display: block;
+  flex: 1;
+}
+
+footer {
+  margin-top: auto;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  border-style: none; /* IE10 fix */
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.button:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+a {
+  background-color: transparent;
+  text-decoration: none;
+  color: inherit;
+}
