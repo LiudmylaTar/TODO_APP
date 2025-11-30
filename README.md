@@ -7,7 +7,7 @@ The app also includes pagination and asynchronous data fetching.
 ## 🚀 Installation and Launch
 
 1. Clone the repository
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/LiudmylaTar/TODO_APP.git
    cd your-repository
 
 2. Install dependencies
