@@ -22,13 +22,13 @@ const Form = () => {
     <form className={css.form} onSubmit={handleSubmit}>
       <input
         className={css.input}
-        placeholder="What do you plan"
+        placeholder="type here..."
         name="text"
         required
         autoFocus
       />
-      <Button className={css.button} type="submit">
-        Add new task
+      <Button className={css.buttonAdd} type="submit">
+        Add new +
       </Button>
     </form>
   );

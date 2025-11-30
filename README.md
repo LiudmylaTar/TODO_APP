@@ -1,16 +1,30 @@
-# React + Vite
+📝 ToDo App — React + Redux Toolkit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple ToDo application built with React and Redux Toolkit.
+It allows users to add, delete, filter, and toggle the completion status of tasks.
+The app also includes pagination and asynchronous data fetching.
 
-Currently, two official plugins are available:
+## 🚀 Installation and Launch
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone the repository
+   git clone https://github.com/your-username/your-repository.git
+   cd your-repository
 
-## React Compiler
+2. Install dependencies
+   npm install
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+3. Start the development server
+   npm start
 
-## Expanding the ESLint configuration
+After launching, the application will be available at:
+http://localhost:3000/
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📌 Features
+
+Add new tasks
+Delete existing tasks
+Toggle task completion status
+Filter tasks by status (All / Active / Completed)
+Pagination support
+Global task index calculation
+Fetching tasks through asynchronous Redux operations
