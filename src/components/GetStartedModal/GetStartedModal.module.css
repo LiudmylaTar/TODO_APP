@@ -1,0 +1,16 @@
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.btn {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .btnWrapper {
+    flex-direction: row;
+  }
+}

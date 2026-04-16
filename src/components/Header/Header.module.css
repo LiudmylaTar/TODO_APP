@@ -12,16 +12,24 @@
   padding: 10px 16px;
   margin: 0 auto;
 }
+.btnWrapper {
+  display: flex;
+  gap: 12px;
+}
+.btn{
+  color: black;
+  font-size: 16px;
+}
 
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
-    padding: 10px 32px;
+    padding: 20px 32px;
   }
 }
 @media screen and (min-width: 1200px) {
   .container {
     max-width: 1200px;
-    padding: 10px 80px;
+    padding: 30px 80px;
   }
 }

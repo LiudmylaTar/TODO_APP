@@ -1,4 +1,4 @@
-import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
+import { RiDeleteBinLine } from "react-icons/ri";
 import css from "./TaskItem.module.css";
 import { useDispatch } from "react-redux";
 import { deleteToDo, toggleCompleted } from "../../redux/TODO/operations";

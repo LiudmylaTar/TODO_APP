@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import css from "./Form.module.css";
 import { addToDo } from "../../redux/TODO/operations";
-import { Button } from "../Button/Button";
+import { Button } from "../common/Button/Button";
 
 const Form = () => {
   const dispatch = useDispatch();

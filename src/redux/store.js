@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import { ToDoReducer } from "./TODO/toDoSlice";
 import filtersReducer from "./TODO/filtersSlice";
+import { authReducer } from "./auth/authSlice";
 
 import {
   persistStore,
@@ -29,6 +30,7 @@ const filtersPersistConfig = {
 
 export const store = configureStore({
   reducer: {
+    auth: authReducer,
     ToDo: persistReducer(todosPersistConfig, ToDoReducer),
     filters: persistReducer(filtersPersistConfig, filtersReducer),
   },

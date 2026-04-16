@@ -1,0 +1,135 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding-block: clamp(100px, 15vw, 220px);
+  padding-inline: clamp(20px, 2vw, 88px);
+  border-radius: 30px 0 0 30px;
+}
+
+.rightSide {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.titelWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 517px;
+}
+.titel {
+  font-weight: 500;
+  font-size: clamp(
+    32px,
+    calc(24px + (70 - 24) * ((100vw - 320px) / (1440 - 320))),
+    70px
+  );
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #fbfbfb;
+}
+.slogan {
+  font-weight: 400;
+  font-size: clamp(
+    16px,
+    calc(24px + (28 - 16) * ((100vw - 400px) / (1440 - 400))),
+    28px
+  );
+  line-height: 107%;
+  letter-spacing: -0.02em;
+  color: #fbfbfb;
+}
+.startBtn {
+  display: inline-flex;
+  gap: 12px;
+  width: fit-content;
+  align-items: center;
+}
+
+
+
+.imgWrapper {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.imgWrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .leftSide,
+  .rightSide {
+    flex: 1 1 50%;
+    width: auto;
+  }
+
+  /* ~150px vertical / ~20px horizontal near 1000px; grows on wider viewports */
+  .rightSide {
+    padding-block: clamp(100px, 15vw, 220px);
+    padding-inline: clamp(20px, 2vw, 88px);
+  }
+
+  .imgWrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 899px) {
+  .leftSide {
+    border-radius: 30px 30px 0px 0px;
+  }
+  .rightSide {
+    border-radius: 0px 0px 30px 30px;
+  }
+  .imgWrapper {
+    padding: 32px;
+  }
+}
+
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(17, 16, 28, 0.5);
+  line-height: 120%;
+  margin-bottom: 6px;
+}
+
+
+@media (max-width: 480px) {
+  .imgWrapper{
+    padding: 18px;
+    margin-left: 0px;
+  }
+
+ 
+}

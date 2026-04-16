@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "../Button/Button";
+import { Button } from "../common/Button/Button";
 import { setStatusFilter } from "../../redux/TODO/filtersSlice";
 import css from "./StatusFilter.module.css";
 import { setPage } from "../../redux/TODO/toDoSlice";
