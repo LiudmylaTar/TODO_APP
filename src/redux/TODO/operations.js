@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://jsonplaceholder.typicode.com";
+axios.defaults.baseURL = "https://nest-for-to-do.onrender.com";
 
 export const fetchToDo = createAsyncThunk(
   "ToDos/fetchAll",

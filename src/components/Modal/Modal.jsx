@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { RiCloseLine } from "react-icons/ri";
+import { GrClose } from "react-icons/gr";
 import css from "./Modal.module.css";
 
 export default function Modal({ title, message, onClose, children }) {
@@ -31,7 +31,7 @@ export default function Modal({ title, message, onClose, children }) {
           onClick={onClose}
           aria-label="Close modal"
         >
-         <RiCloseLine className={css.closeIcon} />
+         <GrClose />
         </button>
         {title && <h2 className={css.title}>{title}</h2>}
         {message && <p className={css.message}>{message}</p>}
