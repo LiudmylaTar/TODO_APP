@@ -3,12 +3,16 @@ import TaskItem from "../TaskItem/TaskItem";
 import { useSelector } from "react-redux";
 
 import Loader from "../Loader/Loader";
-import { selectPaginatedTodos } from "../../redux/TODO/selectors";
+import {
+  selectTodos,
+  selectTodoLoading,
+  selectTodoError,
+} from "../../redux/TODO/selectors";
 
 const TodoList = () => {
-  const items = useSelector(selectPaginatedTodos);
-  const isLoading = useSelector((state) => state.ToDo.isLoading);
-  const error = useSelector((state) => state.ToDo.error);
+  const items = useSelector(selectTodos);
+  const isLoading = useSelector(selectTodoLoading);
+  const error = useSelector(selectTodoError);
   const currentPage = useSelector((state) => state.ToDo.page);
   const limit = useSelector((state) => state.ToDo.limit);
 
@@ -19,7 +23,7 @@ const TodoList = () => {
     <ul className={css.list}>
       {items.map((item, index) => (
         <TaskItem
-          key={item.id}
+          key={item._id}
           item={item}
           index={index}
           page={currentPage}

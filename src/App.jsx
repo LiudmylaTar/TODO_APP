@@ -7,9 +7,18 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoumdPage";
 import ToDoPage from "./pages/ToDoPage/ToDoPage";
 
 import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { refreshUser } from "./redux/auth/authOperation";
+import { selectIsRefreshing } from "./redux/auth/selectors";
 
 function App() {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+  return isRefreshing ? (<strong>Refreshing user...</strong>) : (
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<MainPage />} />

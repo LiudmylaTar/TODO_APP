@@ -16,21 +16,27 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+const authPersistConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["token"],
+};
+
 const todosPersistConfig = {
   key: "todos",
   storage,
-  whitelist: ["items", "page", "limit"],
+  whitelist: ["items", "page", "limit", "total", "totalPages"],
 };
 
 const filtersPersistConfig = {
   key: "filters",
   storage,
-  whitelist: ["status"],
+  whitelist: ["status", "search", "sortBy", "sortOrder"],
 };
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
+    auth: persistReducer(authPersistConfig, authReducer),
     ToDo: persistReducer(todosPersistConfig, ToDoReducer),
     filters: persistReducer(filtersPersistConfig, filtersReducer),
   },

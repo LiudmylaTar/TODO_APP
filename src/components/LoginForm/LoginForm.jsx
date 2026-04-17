@@ -3,16 +3,12 @@ import { Button } from "../common/Button/Button";
 import AuthFormContainer from "../AuthFormContainer/AuthFormContainer";
 import Input from "../common/Input/Input";
 
-export default function LoginForm() {
+export default function LoginForm({ onSubmit, isLoading, error }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
 
   return (
     <AuthFormContainer
@@ -22,30 +18,33 @@ export default function LoginForm() {
       footerLinkTo="/auth/register"
       footerLinkLabel="Register"
     >
-        <Input
-          label="Email"
-          name="email"
-          type="email"
-          placeholder="Enter email"
-          register={register("email", {
-            required: "Email is required",
-          })}
-          error={errors.email}
-        />
+      <Input
+        label="Email"
+        name="email"
+        type="email"
+        placeholder="Enter email"
+        register={register("email", {
+          required: "Email is required",
+        })}
+        error={errors.email}
+      />
 
-        <Input
-          label="Password"
-          name="password"
-          type="password"
-          placeholder="Enter password"
-          register={register("password", {
-            required: "Password is required",
-          })}
-          error={errors.password}
-          showPasswordToggle
-        />
+      <Input
+        label="Password"
+        name="password"
+        type="password"
+        placeholder="Enter password"
+        register={register("password", {
+          required: "Password is required",
+        })}
+        error={errors.password}
+        showPasswordToggle
+      />
 
-        <Button type="submit">Submit</Button>
+      {error?.message && <p>{error.message}</p>}
+      <Button type="submit" disabled={isLoading}>
+        {isLoading ? "Submitting..." : "Submit"}
+      </Button>
     </AuthFormContainer>
   );
 }

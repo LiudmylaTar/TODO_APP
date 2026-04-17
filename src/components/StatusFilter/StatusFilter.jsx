@@ -22,16 +22,16 @@ const StatusFilter = () => {
           All
         </Button>
         <Button
-          selected={filter === "active"}
-          onClick={() => handleFilterChange("active")}
+          selected={filter === "pending"}
+          onClick={() => handleFilterChange("pending")}
         >
-          Active
+          Pending
         </Button>
         <Button
-          selected={filter === "completed"}
-          onClick={() => handleFilterChange("completed")}
+          selected={filter === "done"}
+          onClick={() => handleFilterChange("done")}
         >
-          Completed
+          Done
         </Button>
       </div>
     </div>

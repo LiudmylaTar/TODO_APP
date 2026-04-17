@@ -6,34 +6,42 @@ import TodoList from "../../components/TodoList/TodoList";
 import { setPage } from "../../redux/TODO/toDoSlice.js";
 import StatusFilter from "../../components/StatusFilter/StatusFilter";
 import { fetchToDo } from "../../redux/TODO/operations";
-import { selectFilteredTodos, selectLimit, selectPage } from "../../redux/TODO/selectors.js";
-import { store } from "../../redux/store";
+import {
+  selectLimit,
+  selectPage,
+  selectStatusFilter,
+  selectSearchFilter,
+  selectSortBy,
+  selectSortOrder,
+  selectTotalPages,
+} from "../../redux/TODO/selectors.js";
 
 export default function ToDoPage() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const limit = useSelector(selectLimit);
   const page = useSelector(selectPage);
-  const filtered = useSelector(selectFilteredTodos);
-  const filteredTotal = filtered.length;
-  const totalPages = Math.ceil(filteredTotal / limit);
+  const totalPages = useSelector(selectTotalPages);
+  const status = useSelector(selectStatusFilter);
+  const search = useSelector(selectSearchFilter);
+  const sortBy = useSelector(selectSortBy);
+  const sortOrder = useSelector(selectSortOrder);
 
   useEffect(() => {
-    const state = store.getState().ToDo.items;
-
-    if (state.length === 0) {
-      dispatch(fetchToDo());
-    }
-  }, [dispatch]);
+    dispatch(fetchToDo());
+  }, [dispatch, page, limit, status, search, sortBy, sortOrder]);
   return (
-    <> <Form />
-        <StatusFilter />
-        <TodoList />
-        {totalPages > 1 && (
-          <Pagination
-            currentPage={page}
-            totalPages={totalPages}
-            onPageChange={(newPage) => dispatch(setPage(newPage))}
-          />
-        )}</>
-  )};
+    <>
+      <Form />
+      <StatusFilter />
+      <TodoList />
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={(newPage) => dispatch(setPage(newPage))}
+        />
+      )}
+    </>
+  );
+}

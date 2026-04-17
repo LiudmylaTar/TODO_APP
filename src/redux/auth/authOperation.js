@@ -8,28 +8,28 @@ export const setAuthHeader = (value) => {
 };
 
 export const fetchRegister = createAsyncThunk(
-    "auth/fetchRegister",
-    async (userData, thunkAPI) => {
-        try{
-            const response = await axios.post("/auth/register", userData);
-             setAuthHeader(`Bearer ${response.data.token}`);
-             return response.data;
-        } catch (error) {
-             console.error(
+  "auth/fetchRegister",
+  async (userData, thunkAPI) => {
+    try {
+      const response = await axios.post("/auth/register", userData);
+      setAuthHeader(`Bearer ${res.data.access_token}`);
+      return response.data;
+    } catch (error) {
+      console.error(
         "Registration error:",
         error.response?.data || error.message
       );
-            return thunkAPI.rejectWithValue(error.response?.data);
-        }
+      return thunkAPI.rejectWithValue(error.response?.data);
     }
-)
+  }
+);
 
 export const fetchLogin = createAsyncThunk(
   "auth/fetchLogin",
   async (userData, thunkAPI) => {
     try {
       const res = await axios.post("/auth/login", userData);
-      setAuthHeader(`Bearer ${res.data.token}`);
+      setAuthHeader(`Bearer ${res.data.access_token}`);
       return res.data;
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);
@@ -38,19 +38,30 @@ export const fetchLogin = createAsyncThunk(
   }
 );
 
-export const fetchLogout = createAsyncThunk( "auth/fetchLogout", async () => {
-  await axios.post("/auth/logout");
-  setAuthHeader("");
-});
+export const fetchLogout = createAsyncThunk(
+  "auth/fetchLogout",
+  async (_, thunkAPI) => {
+    try {
+      await axios.post("/auth/logout");
+      setAuthHeader("");
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data);
+    }
+  }
+);
 
-// * GET @ /users/current
+// * GET @ /auth/current
 export const refreshUser = createAsyncThunk(
   "auth/fetchRefresh",
   async (_, thunkAPI) => {
-    const reduxState = thunkAPI.getState();
-    setAuthHeader(`Bearer ${reduxState.auth.token}`);
-    const res = await axios.get("/users/current");
-    return res.data;
+    try {
+      const reduxState = thunkAPI.getState();
+      setAuthHeader(`Bearer ${reduxState.auth.token}`);
+      const res = await axios.get("/auth/current");
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
   },
   {
     condition: (_, thunkAPI) => {

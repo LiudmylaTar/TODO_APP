@@ -3,16 +3,12 @@ import { Button } from "../common/Button/Button";
 import AuthFormContainer from "../AuthFormContainer/AuthFormContainer";
 import Input from "../common/Input/Input";
 
-export default function RegistrationForm() {
+export default function RegistrationForm({ onSubmit, isLoading, error }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
 
   return (
     <AuthFormContainer
@@ -22,39 +18,42 @@ export default function RegistrationForm() {
       footerLinkTo="/auth/login"
       footerLinkLabel="Login"
     >
-        <Input
-          label="Name"
-          name="name"
-          type="text"
-          placeholder="Enter name"
-          register={register("name", {
-            required: "Name is required",
-          })}
-          error={errors.name}
-        />
-        <Input
-          label="Email"
-          name="email"
-          type="email"
-          placeholder="Enter email"
-          register={register("email", {
-            required: "Email is required",
-          })}
-          error={errors.email}
-        />
-        <Input
-          label="Password"
-          name="password"
-          type="password"
-          placeholder="Enter password"
-          register={register("password", {
-            required: "Password is required",
-          })}
-          error={errors.password}
-          showPasswordToggle
-        />
+      <Input
+        label="Name"
+        name="name"
+        type="text"
+        placeholder="Enter name"
+        register={register("name", {
+          required: "Name is required",
+        })}
+        error={errors.name}
+      />
+      <Input
+        label="Email"
+        name="email"
+        type="email"
+        placeholder="Enter email"
+        register={register("email", {
+          required: "Email is required",
+        })}
+        error={errors.email}
+      />
+      <Input
+        label="Password"
+        name="password"
+        type="password"
+        placeholder="Enter password"
+        register={register("password", {
+          required: "Password is required",
+        })}
+        error={errors.password}
+        showPasswordToggle
+      />
 
-        <Button type="submit">Submit</Button>
+      {error?.message && <p>{error.message}</p>}
+      <Button type="submit" disabled={isLoading}>
+        {isLoading ? "Submitting..." : "Submit"}
+      </Button>
     </AuthFormContainer>
   );
 }
