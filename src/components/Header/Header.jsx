@@ -26,7 +26,7 @@ const Header = () => {
       <div className={css.container}>
         <p onClick={() => navigate("/")}> ToDo.App</p>
         {isLoggedIn ? (
-          <p onClick={() => navigate("/tasks")}>Tasks</p>
+          <p onClick={() => navigate("/tasks")}>Tasks for {user?.name ?? "User"}</p>
         ) : (
           <p>Here you can plan your task</p>
         )}
@@ -34,7 +34,6 @@ const Header = () => {
         <div className={css.btnWrapper}>
           {isLoggedIn ? (
             <>
-              <p>{user?.name ?? "User"}</p>
               <Button
                 className={css.btn}
                 onClick={handleLogout}

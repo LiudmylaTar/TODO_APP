@@ -4,7 +4,11 @@ import axios from "axios";
 axios.defaults.baseURL = "https://nest-for-to-do.onrender.com";
 
 export const setAuthHeader = (value) => {
-  axios.defaults.headers.common.Authorization = value;
+  if (value) {
+    axios.defaults.headers.common.Authorization = value;
+    return;
+  }
+  delete axios.defaults.headers.common.Authorization;
 };
 
 export const fetchRegister = createAsyncThunk(
@@ -60,13 +64,16 @@ export const refreshUser = createAsyncThunk(
       const res = await axios.get("/auth/current");
       return res.data;
     } catch (error) {
+      setAuthHeader("");
+      localStorage.removeItem("persist:auth");
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   },
   {
     condition: (_, thunkAPI) => {
       const reduxState = thunkAPI.getState();
-      return reduxState.auth.token !== null;
+      const token = reduxState.auth.token;
+      return typeof token === "string" && token.trim().length > 0;
     },
   }
 );

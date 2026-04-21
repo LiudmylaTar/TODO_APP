@@ -32,48 +32,22 @@
   transform: scale(1.05);
 }
 .status {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: block;
   margin-bottom: 6px;
-  gap: 12px;
 }
 
-.select {
-  min-width: 50%;
-  padding: 4px 8px;
-  border: 1px solid #c9c9c9;
-  border-radius: 6px;
-  color: #1a1a1a;
-  background-color: #ffffff;
+.selector {
+  max-width: 180px;
 }
 
-.select:focus {
-  outline: none;
-  border-color: #7d9fff;
-  box-shadow: 0 0 0 2px rgba(125, 159, 255, 0.2);
-}
-
-.select[data-priority="medium"] {
+.medium {
   color: #f97316;
   font-weight: 600;
 }
 
-.select[data-priority="high"] {
+.high {
   color: #dc2626;
   font-weight: 600;
-}
-
-.select option {
-  color: #1a1a1a;
-}
-
-.select option[value="medium"] {
-  color: #f97316;
-}
-
-.select option[value="high"] {
-  color: #dc2626;
 }
 
 .titleInput {

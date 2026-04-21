@@ -3,6 +3,7 @@ import css from "./TaskItem.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteToDo, updateToDo } from "../../redux/TODO/operations";
+import Selector from "../common/Selector/Selector";
 
 const TaskItem = ({ item, index, page, limit }) => {
   const dispatch = useDispatch();
@@ -61,6 +62,15 @@ const TaskItem = ({ item, index, page, limit }) => {
   const titleInputId = `todo-title-${fieldSuffix}`;
   const statusSelectId = `todo-status-${fieldSuffix}`;
   const prioritySelectId = `todo-priority-${fieldSuffix}`;
+  const statusOptions = [
+    { value: "pending", label: "Pending" },
+    { value: "done", label: "Done" },
+  ];
+  const priorityOptions = [
+    { value: "low", label: "Low" },
+    { value: "medium", label: "Medium" },
+    { value: "high", label: "High" },
+  ];
 
   return (
     <li className={css.box}>
@@ -90,32 +100,25 @@ const TaskItem = ({ item, index, page, limit }) => {
         <RiDeleteBinLine size={24} />
       </button>
       <div className={css.status}>
-        <p>Status</p>
-        <select
+        <Selector
           id={statusSelectId}
-          name="status"
-          className={css.select}
+          label="Status"
+          options={statusOptions}
           value={item.status}
           onChange={handleStatusChange}
-        >
-          <option value="pending">Pending</option>
-          <option value="done">Done</option>
-        </select>
+          className={css.selector}
+        />
       </div>
       <div className={css.status}>
-        <p>Priority</p>
-        <select
+        <Selector
           id={prioritySelectId}
-          name="priority"
-          className={css.select}
-          data-priority={item.priority}
+          label="Priority"
+          options={priorityOptions}
           value={item.priority}
           onChange={handlePriorityChange}
-        >
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
+          className={css.selector}
+          fieldClassName={css[item.priority] ?? ""}
+        />
       </div>
     </li>
   );

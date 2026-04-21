@@ -15,6 +15,8 @@ import {
   selectSortOrder,
   selectTotalPages,
 } from "../../redux/TODO/selectors.js";
+import SortFilter from "../../components/SortFilter/SortFilter.jsx";
+import css from "./ToDoPage.module.css";
 
 export default function ToDoPage() {
   const dispatch = useDispatch();
@@ -33,7 +35,10 @@ export default function ToDoPage() {
   return (
     <>
       <Form />
-      <StatusFilter />
+      <div className={css.filters_wrapper}>
+        <StatusFilter />
+        <SortFilter />
+      </div>
       <TodoList />
       {totalPages > 1 && (
         <Pagination

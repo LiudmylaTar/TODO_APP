@@ -1,5 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { clearAuth } from "../auth/authSlice";
+import { setAuthHeader } from "../auth/authOperation";
 
 axios.defaults.baseURL = "https://nest-for-to-do.onrender.com";
 
@@ -24,7 +26,12 @@ export const fetchToDo = createAsyncThunk(
       const response = await axios.get("/tasks", { params });
       return response.data;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+      if (e.response?.status === 401) {
+        thunkAPI.dispatch(clearAuth());
+        setAuthHeader("");
+        localStorage.removeItem("persist:auth");
+      }
+      return thunkAPI.rejectWithValue(e.response?.data || e.message);
     }
   }
 );
@@ -37,7 +44,12 @@ export const deleteToDo = createAsyncThunk(
       const refreshed = await thunkAPI.dispatch(fetchToDo()).unwrap();
       return { id: ToDoId, refreshed };
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+      if (err.response?.status === 401) {
+        thunkAPI.dispatch(clearAuth());
+        setAuthHeader("");
+        localStorage.removeItem("persist:auth");
+      }
+      return thunkAPI.rejectWithValue(err.response?.data || err.message);
     }
   }
 );
@@ -52,7 +64,12 @@ export const addToDo = createAsyncThunk(
       const refreshed = await thunkAPI.dispatch(fetchToDo()).unwrap();
       return refreshed;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.response);
+      if (err.response?.status === 401) {
+        thunkAPI.dispatch(clearAuth());
+        setAuthHeader("");
+        localStorage.removeItem("persist:auth");
+      }
+      return thunkAPI.rejectWithValue(err.response?.data || err.message);
     }
   }
 );
@@ -65,7 +82,12 @@ export const toggleCompleted = createAsyncThunk(
       await axios.patch(`/tasks/${id}`, { status: nextStatus });
       return { id, status: nextStatus };
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+      if (e.response?.status === 401) {
+        thunkAPI.dispatch(clearAuth());
+        setAuthHeader("");
+        localStorage.removeItem("persist:auth");
+      }
+      return thunkAPI.rejectWithValue(e.response?.data || e.message);
     }
   }
 );
@@ -77,7 +99,12 @@ export const updateToDo = createAsyncThunk(
       const response = await axios.patch(`/tasks/${id}`, changes);
       return response.data;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+      if (e.response?.status === 401) {
+        thunkAPI.dispatch(clearAuth());
+        setAuthHeader("");
+        localStorage.removeItem("persist:auth");
+      }
+      return thunkAPI.rejectWithValue(e.response?.data || e.message);
     }
   }
 );

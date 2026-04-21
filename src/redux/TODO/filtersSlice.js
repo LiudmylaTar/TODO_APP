@@ -21,10 +21,20 @@ const filtersSlice = createSlice({
     setSortOrder(state, action) {
       state.sortOrder = action.payload;
     },
+    setSorting(state, action) {
+      const { sortBy, sortOrder } = action.payload;
+      if (sortBy) state.sortBy = sortBy;
+      if (sortOrder) state.sortOrder = sortOrder;
+    },
   },
 });
 
-export const { setStatusFilter, setSearchFilter, setSortBy, setSortOrder } =
-  filtersSlice.actions;
+export const {
+  setStatusFilter,
+  setSearchFilter,
+  setSortBy,
+  setSortOrder,
+  setSorting,
+} = filtersSlice.actions;
 
 export default filtersSlice.reducer;
