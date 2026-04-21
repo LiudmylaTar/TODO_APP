@@ -1,3 +1,5 @@
+import { createSelector } from "@reduxjs/toolkit";
+
 export const selectPage = (state) => state.ToDo.page;
 export const selectLimit = (state) => state.ToDo.limit;
 export const selectTodos = (state) => state.ToDo.items;
@@ -9,3 +11,22 @@ export const selectStatusFilter = (state) => state.filters.status;
 export const selectSearchFilter = (state) => state.filters.search;
 export const selectSortBy = (state) => state.filters.sortBy;
 export const selectSortOrder = (state) => state.filters.sortOrder;
+
+export const selectTodosQueryParams = createSelector(
+  [
+    selectPage,
+    selectLimit,
+    selectStatusFilter,
+    selectSearchFilter,
+    selectSortBy,
+    selectSortOrder,
+  ],
+  (page, limit, status, search, sortBy, sortOrder) => ({
+    page,
+    limit,
+    status,
+    search,
+    sortBy,
+    sortOrder,
+  })
+);
