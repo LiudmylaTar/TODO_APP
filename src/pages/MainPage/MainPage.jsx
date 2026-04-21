@@ -2,10 +2,21 @@ import { useState } from "react";
 import { Button } from "../../components/common/Button/Button";
 import GetStartedModal from "../../components/GetStartedModal/GetStartedModal";
 import css from "./MainPage.module.css";
+import {  useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 export default function MainPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+const handleGetStarted = () => {
+  if (isLoggedIn) {
+    navigate("/tasks");
+  } else {
+    setIsModalOpen(true);
+  }
+};
   return (
     <>
       <section className={css.hero}>
@@ -18,7 +29,7 @@ export default function MainPage() {
         </div>
         <Button
           className={css.startBtn}
-          onClick={() => setIsModalOpen(true)}
+          onClick={handleGetStarted}
         >
           Get started{" "}
         </Button>
